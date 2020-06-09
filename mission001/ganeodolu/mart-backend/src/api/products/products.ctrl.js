@@ -13,7 +13,7 @@ export const checkObjectId = (ctx, next) => {
   return next();
 };
 
-export const write = async (ctx) => {
+export const create = async (ctx) => {
   const schema = Joi.object().keys({
     productId: Joi.string().required(),
     productName: Joi.string().required(),

@@ -1,12 +1,13 @@
 import qs from 'qs';
 import client from './client';
 
-export const listProducts = ({
-  page
-}) => {
+export const listProducts = ({ page }) => {
   const queryString = qs.stringify({
-    page
+    page,
   });
   return client.get(`/api/products?${queryString}`);
   // return client.get(`/api/products?${queryString}`);
 };
+
+export const createProduct = ({ productId, productName, price, quantity }) =>
+  client.post('/api/products', { productId, productName, price, quantity });

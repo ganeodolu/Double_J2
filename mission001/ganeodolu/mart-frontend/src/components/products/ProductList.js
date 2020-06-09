@@ -2,11 +2,11 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 
 const ProductItem = ({product}) => {
-  const { productId, productName, price, quantity, _id} = product
+  const { productId, productName, price, quantity} = product
   return (
   <section className="ProductInfo">
     <div>{productId}</div>
-    <img src='http://bgf-cu.xcache.kinxcdn.com/product/8801771018452.jpg' />
+    <img src='http://bgf-cu.xcache.kinxcdn.com/product/8801771018452.jpg' alt='제품사진' />
     <div>이름:{productName}</div>
     <div>{price}원</div>
     <div>{quantity}개</div>

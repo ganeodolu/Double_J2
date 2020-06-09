@@ -4,7 +4,7 @@ import * as productsCtrl from './products.ctrl';
 const products = new Router();
 
 products.get('/', productsCtrl.list);
-products.post('/', productsCtrl.write);
+products.post('/', productsCtrl.create);
 
 const product = new Router();
 

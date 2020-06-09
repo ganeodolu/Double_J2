@@ -12,7 +12,6 @@ const ProductListContainer = ({ location }) => {
     error: products.error,
     loading: loading['products/LIST_PRODUCTS'],
   }));
-  console.log(location);
   useEffect(() => {
     const { page } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
