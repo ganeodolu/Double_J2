@@ -1,17 +1,18 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import ProductListPage from './pages/ProductListPage';
+import ProductsListPage from './pages/ProductsListPage';
 import HomePage from './pages/HomePage';
 import CreateProductPage from './pages/CreateProductPage';
-// import logo from './logo.svg';
-// import './App.css';
+import ProductPage from './pages/ProductPage';
+import './App.css';
 
 function App() {
   return (
     <>
       <Route component={HomePage} path={'/'} exact />
-      <Route component={ProductListPage} path={'/products'} />
+      <Route component={ProductsListPage} path={'/products'} exact />
       <Route component={CreateProductPage} path={'/create'} />
+      <Route component={ProductPage} path={'/products/:_id'} />
     </>
   );
 }

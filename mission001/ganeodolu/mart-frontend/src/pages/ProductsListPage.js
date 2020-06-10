@@ -2,7 +2,7 @@ import React from 'react';
 import ProductListContainer from '../containers/products/ProductListContainter';
 import Responsive from '../components/common/Responsive';
 
-const ProductListPage = () => {
+const ProductsListPage = () => {
   return (
     <Responsive>
       <ProductListContainer />
@@ -10,4 +10,4 @@ const ProductListPage = () => {
   );
 };
 
-export default ProductListPage;
+export default ProductsListPage;

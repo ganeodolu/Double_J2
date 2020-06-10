@@ -1,10 +1,10 @@
 import React from 'react';
-import ProductViewer from '../components/product/ProductViewer';
+import ProductViewerContainer from '../containers/product/ProductViewerContainer'
 
 const ProductPage = () => {
   return (
   <div>
-    <ProductViewer />
+    <ProductViewerContainer />
   </div>
   );
 };

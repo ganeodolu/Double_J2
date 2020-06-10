@@ -2,15 +2,13 @@ import React from 'react';
 import ProductActionButtonsContainer from '../../containers/product/ProductActionButtonsContainer';
 // import { Link } from 'react-router-dom';
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, onClickProduct }) => {
   const { productId, productName, price, quantity, _id } = product;
+
   return (
-    <section className="ProductInfo">
+    <section className="Products-Info" onClick={() => onClickProduct(_id)}>
       <div>{productId}</div>
-      <img
-        src="http://bgf-cu.xcache.kinxcdn.com/product/8801771018452.jpg"
-        alt="제품사진"
-      />
+      <img src="/images/product2.jpg" alt="제품사진" />
       <div>이름:{productName}</div>
       <div>{price}원</div>
       <div>{quantity}개</div>
@@ -19,7 +17,7 @@ const ProductItem = ({ product }) => {
   );
 };
 
-const ProductList = ({ products, loading, error }) => {
+const ProductList = ({ products, loading, error, onClickProduct }) => {
   console.log(products);
   if (error) {
     return <div>에러 발생</div>;
@@ -29,7 +27,11 @@ const ProductList = ({ products, loading, error }) => {
       {!loading && products && (
         <div>
           {products.map((product) => (
-            <ProductItem product={product} key={product._id} />
+            <ProductItem
+              product={product}
+              key={product._id}
+              onClickProduct={onClickProduct}
+            />
           ))}
         </div>
       )}
