@@ -1,34 +1,39 @@
 import React from 'react';
+import ProductActionButtonsContainer from '../../containers/product/ProductActionButtonsContainer';
 // import { Link } from 'react-router-dom';
 
-const ProductItem = ({product}) => {
-  const { productId, productName, price, quantity} = product
+const ProductItem = ({ product }) => {
+  const { productId, productName, price, quantity, _id } = product;
   return (
-  <section className="ProductInfo">
-    <div>{productId}</div>
-    <img src='http://bgf-cu.xcache.kinxcdn.com/product/8801771018452.jpg' alt='제품사진' />
-    <div>이름:{productName}</div>
-    <div>{price}원</div>
-    <div>{quantity}개</div>
-  </section>
-  )
-}
+    <section className="ProductInfo">
+      <div>{productId}</div>
+      <img
+        src="http://bgf-cu.xcache.kinxcdn.com/product/8801771018452.jpg"
+        alt="제품사진"
+      />
+      <div>이름:{productName}</div>
+      <div>{price}원</div>
+      <div>{quantity}개</div>
+      <ProductActionButtonsContainer _id={_id} />
+    </section>
+  );
+};
 
-const ProductList = ({products, loading, error}) => {
+const ProductList = ({ products, loading, error }) => {
   console.log(products);
-  if(error) {
-    return <div>에러 발생</div>
+  if (error) {
+    return <div>에러 발생</div>;
   }
   return (
-  <div>
-    {!loading && products && (
-      <div>
-        {products.map(product => (
-          <ProductItem product={product} key={product._id} />
-        ))}
-      </div>
-    )}
-  </div>
+    <div>
+      {!loading && products && (
+        <div>
+          {products.map((product) => (
+            <ProductItem product={product} key={product._id} />
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 

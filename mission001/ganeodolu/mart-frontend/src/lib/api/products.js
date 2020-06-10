@@ -6,8 +6,11 @@ export const listProducts = ({ page }) => {
     page,
   });
   return client.get(`/api/products?${queryString}`);
-  // return client.get(`/api/products?${queryString}`);
 };
 
 export const createProduct = ({ productId, productName, price, quantity }) =>
   client.post('/api/products', { productId, productName, price, quantity });
+
+export const removeProduct = (id) => {
+  client.delete(`/api/products/${id}`);
+};
