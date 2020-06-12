@@ -24,6 +24,7 @@ const WriteActionButtonsContainer = ({ history }) => {
     originalProductId: write.originalProductId,
   }));
   const onCreate = () => {
+    if([productId, productName, price, quantity].includes('')) return alert('모든 항목을 입력하시요.')
     if (originalProductId) {
       dispatch(
         updateProduct({
