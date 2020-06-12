@@ -1,16 +1,16 @@
 import React, { useEffect, useCallback } from 'react';
-import CreateForm from '../../components/create/CreateForm';
+import WriteForm from '../../components/write/WriteForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeField, initialize } from '../../modules/create';
+import { changeField, initialize } from '../../modules/write';
 
-const CreateFormContainer = () => {
+const WriteFormContainer = () => {
   const dispatch = useDispatch();
   const { productId, productName, price, quantity } = useSelector(
-    ({ create }) => ({
-      productId: create.productId,
-      productName: create.productName,
-      price: create.price,
-      quantity: create.quantity,
+    ({ write }) => ({
+      productId: write.productId,
+      productName: write.productName,
+      price: write.price,
+      quantity: write.quantity,
     }),
   );
   const onChangeField = useCallback(
@@ -25,7 +25,7 @@ const CreateFormContainer = () => {
   }, [dispatch]);
   return (
     <div>
-      <CreateForm
+      <WriteForm
         onChangeField={onChangeField}
         productId={productId}
         productName={productName}
@@ -36,4 +36,4 @@ const CreateFormContainer = () => {
   );
 };
 
-export default CreateFormContainer;
+export default WriteFormContainer;

@@ -6,14 +6,16 @@ const ProductItem = ({ product, onClickProduct }) => {
   const { productId, productName, price, quantity, _id } = product;
 
   return (
-    <section className="Products-Info" onClick={() => onClickProduct(_id)}>
-      <div>{productId}</div>
-      <img src="/images/product2.jpg" alt="제품사진" />
-      <div>이름:{productName}</div>
-      <div>{price}원</div>
-      <div>{quantity}개</div>
-      <ProductActionButtonsContainer _id={_id} />
-    </section>
+    <>
+      <section className="Products-Info" onClick={() => onClickProduct(_id)}>
+        <div>{productId}</div>
+        <img src="/images/product2.jpg" alt="제품사진" />
+        <div>이름:{productName}</div>
+        <div>{price}원</div>
+        <div>{quantity}개</div>
+      </section>
+      {/* <ProductActionButtonsContainer _id={_id} /> */}
+    </>
   );
 };
 

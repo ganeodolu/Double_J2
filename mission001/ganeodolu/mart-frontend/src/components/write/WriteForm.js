@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const CreateForm = ({
+const WriteForm = ({
   productId,
   productName,
   price,
@@ -54,4 +54,4 @@ const CreateForm = ({
   );
 };
 
-export default CreateForm;
+export default WriteForm;

@@ -8,10 +8,24 @@ export const listProducts = ({ page }) => {
   return client.get(`/api/products?${queryString}`);
 };
 
-export const readProduct = id => client.get(`/api/products/${id}`)
+export const readProduct = (id) => client.get(`/api/products/${id}`);
 
 export const createProduct = ({ productId, productName, price, quantity }) =>
   client.post('/api/products', { productId, productName, price, quantity });
+
+export const updateProduct = ({
+  id,
+  productId,
+  productName,
+  price,
+  quantity,
+}) =>
+  client.patch(`/api/products/${id}`, {
+    productId,
+    productName,
+    price,
+    quantity,
+  });
 
 export const removeProduct = (id) => {
   client.delete(`/api/products/${id}`);
