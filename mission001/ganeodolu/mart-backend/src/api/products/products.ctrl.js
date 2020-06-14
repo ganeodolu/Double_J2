@@ -4,10 +4,29 @@ import Joi from 'joi';
 
 const { ObjectId } = mongoose.Types;
 
-export const checkObjectId = (ctx, next) => {
+export const getProductById = async (ctx, next) => {
   const { id } = ctx.params;
   if (!ObjectId.isValid(id)) {
     ctx.status = 400;
+    return;
+  }
+  try {
+    const product = await Product.findById(id);
+    if (!product) {
+      ctx.status = 404;
+      return;
+    }
+    ctx.state.product = product;
+    return next();
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+};
+
+export const checkOwnProduct = (ctx, next) => {
+  const { user, product } = ctx.state;
+  if (product.user._id.toString() !== user._id) {
+    ctx.status = 403;
     return;
   }
   return next();
@@ -19,7 +38,6 @@ export const create = async (ctx) => {
     productName: Joi.string().required(),
     price: Joi.number().required(),
     quantity: Joi.number().required(),
-    // tags: Joi.array().items(Joi.string()).required(),
   });
   const result = Joi.validate(ctx.request.body, schema);
   if (result.error) {
@@ -33,6 +51,7 @@ export const create = async (ctx) => {
     productName,
     price,
     quantity,
+    user: ctx.state.user,
   });
   try {
     await product.save();
@@ -48,13 +67,17 @@ export const list = async (ctx) => {
     ctx.status = 400;
     return;
   }
+  const { tag, username } = ctx.query;
+  const query = {
+    ...(username ? { 'user.username': username } : {}),
+  };
   try {
-    const products = await Product.find()
+    const products = await Product.find(query)
       .sort({ _id: 1 })
       .limit(10)
       .skip((page - 1) * 10)
       .exec();
-    const productCount = await Product.countDocuments().exec();
+    const productCount = await Product.countDocuments(query).exec();
     ctx.set('Last-Page', Math.ceil(productCount / 10));
     ctx.body = products;
   } catch (e) {
@@ -62,30 +85,7 @@ export const list = async (ctx) => {
   }
 };
 export const read = async (ctx) => {
-  const { id } = ctx.params;
-  const schema = Joi.object().keys({
-    productId: Joi.string(),
-    productName: Joi.string(),
-    price: Joi.number(),
-    quantity: Joi.number(),
-    // tags: Joi.array().items(Joi.string()),
-  });
-  const result = Joi.validate(ctx.request.body, schema);
-  if (result.error) {
-    ctx.status = 400;
-    ctx.body = result.error;
-    return;
-  }
-  try {
-    const product = await Product.findById(id).exec();
-    if (!product) {
-      ctx.status = 404;
-      return;
-    }
-    ctx.body = product;
-  } catch (e) {
-    ctx.throw(500, e);
-  }
+  ctx.body = ctx.state.product;
 };
 export const remove = async (ctx) => {
   const { id } = ctx.params;
