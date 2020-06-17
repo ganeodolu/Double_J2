@@ -62,14 +62,25 @@ export const create = async (ctx) => {
 };
 export const list = async (ctx) => {
   const page = parseInt(ctx.query.page || '1', 10);
-
   if (page < 1) {
     ctx.status = 400;
     return;
   }
-  const { tag, username } = ctx.query;
+  const {
+    username,
+    productName,
+    minPrice,
+    maxPrice,
+    minQuantity,
+    maxQuantity,
+  } = ctx.query;
   const query = {
     ...(username ? { 'user.username': username } : {}),
+    ...(productName ? { productName : {$regex : `.*${productName}.*`} } : {}),
+    ...(minPrice ? { price: { $gte: minPrice } } : {}),
+    ...(maxPrice ? { price: { $lte: maxPrice } } : {}),
+    ...(minQuantity ? { quantity: { $gte: minQuantity } } : {}),
+    ...(maxQuantity ? { quantity: { $lte: maxQuantity } } : {}),
   };
   try {
     const products = await Product.find(query)
