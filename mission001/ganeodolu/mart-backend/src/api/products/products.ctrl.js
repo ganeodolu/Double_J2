@@ -76,7 +76,7 @@ export const list = async (ctx) => {
   } = ctx.query;
   const query = {
     ...(username ? { 'user.username': username } : {}),
-    ...(productName ? { productName : {$regex : `.*${productName}.*`} } : {}),
+    ...(productName ? { productName: { $regex: `.*${productName}.*` } } : {}),
     ...(minPrice ? { price: { $gte: minPrice } } : {}),
     ...(maxPrice ? { price: { $lte: maxPrice } } : {}),
     ...(minQuantity ? { quantity: { $gte: minQuantity } } : {}),
