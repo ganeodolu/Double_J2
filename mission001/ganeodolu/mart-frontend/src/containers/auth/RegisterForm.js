@@ -14,6 +14,7 @@ const RegisterForm = ({ history }) => {
     authError: auth.authError,
     user: user.user,
   }));
+  console.log(user);
   const onChange = (e) => {
     const { value, name } = e.target;
     dispatch(changeField({ form: 'register', key: name, value }));
@@ -47,7 +48,7 @@ const RegisterForm = ({ history }) => {
         setError('이미 존재하는 아이디입니다');
         return;
       }
-      setError('회원가입 실패')
+      setError('회원가입 실패');
       console.error(authError);
       return;
     }
@@ -62,6 +63,11 @@ const RegisterForm = ({ history }) => {
     if (user) {
       console.log('check API 성공');
       history.push('/products');
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
     }
   }, [history, user]);
 

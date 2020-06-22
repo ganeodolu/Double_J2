@@ -34,7 +34,7 @@ const LoginForm = ({ history }) => {
     if (authError) {
       console.log('오류 발생');
       console.error(authError);
-      setError('로그인 실패')
+      setError('로그인 실패');
       return;
     }
     if (auth) {
@@ -47,6 +47,11 @@ const LoginForm = ({ history }) => {
     if (user) {
       console.log('check API 성공');
       history.push('/products');
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
     }
   }, [history, user]);
 
