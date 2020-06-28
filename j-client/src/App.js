@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { Route } from 'react-router-dom';
+import { Home, Auth } from 'pages';
+import HeaderContainer from 'containers/Base/HeaderContainer';
+import storage from 'lib/storage';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as userActions from 'redux/modules/user';
 
 function App() {
+  const dispatch = useDispatch();
+  const UserActions = bindActionCreators(userActions, dispatch);
+
+  const initializeUserInfo = async () => {
+    const loggedInfo = storage.get('loggedInfo');
+    if(!loggedInfo) return;
+
+    UserActions.setLoggedInfo(loggedInfo);
+    try {
+      await UserActions.checkStatus();
+    } catch(e) {
+      storage.remove('loggedInfo');
+      window.location.href = '/auth/login?expired';
+    }
+  }
+
+  useEffect(() => {
+    initializeUserInfo();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <HeaderContainer/>
+      <Route exact path="/" component={Home} />
+      <Route path="/auth" component={Auth} />
     </div>
   );
 }
