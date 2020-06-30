@@ -9,11 +9,11 @@ const Aligner = styled.div`
   `;
 
 const StyledLink = styled(Link)`
-    color: ${oc.gray[6]};
-    &:hover {
-        color: ${oc.gray[7]};
-    }
-  `
+  color: ${oc.gray[6]};
+  &:hover {
+      color: ${oc.gray[7]};
+  }
+`
 
 const RightAlignedLink = ({to, children}) => (
   <Aligner>

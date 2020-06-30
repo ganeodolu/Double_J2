@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "immutable": "^4.0.0-rc.12",
     "open-color": "^1.7.0",
     "react": "^16.13.1",

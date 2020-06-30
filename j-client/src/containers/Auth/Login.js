@@ -61,19 +61,19 @@ function Login({ history, location }) {
   return (
     <AuthContent title="로그인">
       <InputWithLabel 
-      label="이메일" 
-      name="email" 
-      placeholder="이메일"
-      value={email}
-      onChange={handleChange} 
+        label="이메일" 
+        name="email" 
+        placeholder="이메일"
+        value={email}
+        onChange={handleChange} 
       />
       <InputWithLabel 
-      label="비밀번호" 
-      name="password" 
-      placeholder="비밀번호" 
-      type="password"
-      value={password}
-      onChange={handleChange} 
+        label="비밀번호" 
+        name="password" 
+        placeholder="비밀번호" 
+        type="password"
+        value={password}
+        onChange={handleChange} 
       />
       {
         error && <AuthError>{error}</AuthError>

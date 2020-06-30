@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
-import { Home, Auth } from 'pages';
+import { Home, Auth, Result } from 'pages';
 import HeaderContainer from 'containers/Base/HeaderContainer';
 import storage from 'lib/storage';
 import { useDispatch } from 'react-redux';
@@ -32,6 +32,7 @@ function App() {
     <div>
       <HeaderContainer/>
       <Route exact path="/" component={Home} />
+      <Route path="/result" component={Result} />
       <Route path="/auth" component={Auth} />
     </div>
   );
