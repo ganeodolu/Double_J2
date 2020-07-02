@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { shadow, media } from 'lib/styleUtils';
+import { shadow } from 'lib/styleUtils';
 
 const Positioner = styled.div`
   display: flex;
@@ -63,7 +63,7 @@ const AddButton = styled.div`
   }
 `;
 
-const KakaoWrapper = ({ thumbnail, title, authors, publisher, datetime, url }) => (
+const KakaoWrapper = ({ thumbnail, title, authors, publisher, datetime, url, onClick }) => (
   <Positioner>
     <Thumbnail src={thumbnail}/>
     <InfoContainer>
@@ -72,7 +72,7 @@ const KakaoWrapper = ({ thumbnail, title, authors, publisher, datetime, url }) =
       <p>출판사: {publisher}</p>
       <p>{datetime.substr(0, 4)}년 {datetime.substr(5, 2)}월</p>
     </InfoContainer>
-    <AddButton>Add to DB</AddButton>
+    <AddButton onClick={onClick}>Add to DB</AddButton>
   </Positioner>
 );
 
