@@ -53,9 +53,6 @@ exports.create = async (ctx) => {
 
   if(existing) {
     ctx.status = 409;
-    ctx.body = {
-      key: existing.email === ctx.request.body.email ? 'email' : 'username'
-    };
     return;
   };
 
@@ -100,12 +97,12 @@ exports.replace = async (ctx) => {
 }
 
 exports.update = async (ctx) => {
-  const { id } = ctx.params;
-  // const { id, stock } = ctx.request.body
+  const { id, stock } = ctx.request.body
+
   let book;
 
   try {
-    book = await Book.findByIdAndUpdate(id, ctx.request.body, {
+    book = await Book.findByIdAndUpdate(id, { stock }, {
       new: true
     });
   } catch(e) {

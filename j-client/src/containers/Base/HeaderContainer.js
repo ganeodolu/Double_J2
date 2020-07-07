@@ -6,7 +6,7 @@ import * as userActions from 'redux/modules/user';
 import * as kakaoActions from 'redux/modules/kakao';
 import storage from 'lib/storage';
 
-function HeaderContainer({ history }) {
+function HeaderContainer() {
   const { visible, user, text } = useSelector(state => ({
     visible: state.base.getIn(['header', 'visible']),
     user: state.user,

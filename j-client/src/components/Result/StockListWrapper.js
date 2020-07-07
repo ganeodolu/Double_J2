@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { shadow } from 'lib/styleUtils';
 
 const Positioner = styled.div`
   display: flex;
@@ -30,40 +29,7 @@ const TitleLink = styled.a`
   }
 `
 
-const AddButton = styled.div`
-  position: absolute;
-  right: 15px;
-  bottom: 15px;
-
-  margin-top: 1rem;
-  padding-top: 0.6rem;
-  padding-bottom: 0.5rem;
-
-  width: 100px;
-  height: 40px;
-
-  background: ${oc.blue[6]};
-  color: white;
-
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 500;
-
-  cursor: pointer;
-  user-select: none;
-  transition: .2s all;
-
-  &:hover {
-      background: ${oc.blue[5]};
-      ${shadow(0)}
-  }
-
-  &:active {
-      background: ${oc.blue[7]};
-  }
-`;
-
-const KakaoWrapper = ({ thumbnail, title, authors, publisher, datetime, url, onClick }) => (
+const StockWrapper = ({ thumbnail, title, authors, publisher, datetime, url }) => (
   <Positioner>
     <Thumbnail src={thumbnail}/>
     <InfoContainer>
@@ -72,8 +38,7 @@ const KakaoWrapper = ({ thumbnail, title, authors, publisher, datetime, url, onC
       <p>출판사: {publisher}</p>
       <p>{datetime.substr(0, 4)}년 {datetime.substr(5, 2)}월</p>
     </InfoContainer>
-    <AddButton onClick={onClick}>Add to DB</AddButton>
   </Positioner>
 );
 
-export default KakaoWrapper;
+export default StockWrapper;

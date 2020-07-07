@@ -1,15 +1,12 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+import { ResultWrapper } from 'components/Result';
 
 function Home() {
   return (
-    <div>
-      Home<br/>
-      Home<br/>
-      Home<br/>
-      Home<br/>
-      Home<br/>
-      Home<br/>
-    </div>
+    <ResultWrapper>
+      Home
+    </ResultWrapper>
   );
 };
 

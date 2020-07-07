@@ -29,13 +29,7 @@ height: 2px;
 background: linear-gradient(to right, ${oc.blue[3]}, ${oc.pink[1]});
 `;
 
-const Contents = styled.div`
-background: white;
-padding: 2rem;
-height: auto;
-`;
-
-const InfoWrapper = ({ text, totalCount, children }) => {
+const InfoWrapper = ({ text, totalCount }) => {
   return (
     <>
       <InfoContainer>
@@ -43,9 +37,6 @@ const InfoWrapper = ({ text, totalCount, children }) => {
         <InfoCount> 검색 결과 {totalCount ? totalCount : 0}건</InfoCount>
       </InfoContainer>
       <GradientBorder />
-      <Contents>
-        {children}
-      </Contents>
     </>
   )
 }

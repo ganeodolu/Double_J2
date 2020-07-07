@@ -6,6 +6,11 @@ const OrderList = new Schema({
   Quantity: Number
 })
 
+const SaleList = new Schema({
+  datetime: Date,
+  Quantity: Number
+})
+
 const Book = new Schema({
   authors: [String],
   contents: String,
@@ -20,7 +25,11 @@ const Book = new Schema({
   translators: [String],
   url: String,
   order_list: [OrderList],
-  stock: Number
+  sale_list: [SaleList],
+  stock: {
+    type: Number,
+    default: 0
+  }
 });
 
 Book.statics.findByIsbn = function(isbn) {

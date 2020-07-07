@@ -9,8 +9,10 @@ const Container = styled.div`
 
 // 너비, 그림자 설정
 const ShadowedBox = styled.div`
-  margin-top: 58px;
+  // margin-top: 58px;
   width: 1200px;
+  background: white;
+  height: auto;
   ${media.wide`
     width: 992px;
   `}
@@ -22,7 +24,7 @@ const ShadowedBox = styled.div`
   `}
 `;
 
-const KakaoWrapper = ({ children }) => (
+const ResultWrapper = ({ children }) => (
   <Container>
     <ShadowedBox>
       {children}
@@ -30,4 +32,4 @@ const KakaoWrapper = ({ children }) => (
   </Container>
 );
 
-export default KakaoWrapper;
+export default ResultWrapper;

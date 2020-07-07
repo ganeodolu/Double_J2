@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { InfoWrapper, KakaoWrapper } from 'components/Result';
+import { InfoWrapper, BookWrapper, ResultContents, AddButton } from 'components/Result';
 import * as booksActions from 'redux/modules/books';
 
 
@@ -31,20 +31,19 @@ function Kakao() {
   }
 
   return (
-    <InfoWrapper text={text} totalCount={totalCount}>
-      {data && data.map((book, idx) => (
-        <KakaoWrapper 
-          key={idx} 
-          thumbnail={book.thumbnail} 
-          title={book.title} 
-          authors={book.authors}
-          publisher={book.publisher} 
-          datetime={book.datetime}
-          url={book.url}
-          onClick={() => handleAddDB(book)}
-         />
-      ))}
-    </InfoWrapper>
+    <>
+      <InfoWrapper text={text} totalCount={totalCount} />
+      <ResultContents>
+        {data && data.map((book, idx) => (
+          <BookWrapper 
+            key={idx} 
+            book={book}
+          >
+            <AddButton onClick={() => handleAddDB(book)}>DB에 담기</AddButton>
+          </BookWrapper>
+        ))}
+      </ResultContents>
+    </>
   )
 };
 

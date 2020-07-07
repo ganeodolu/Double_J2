@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { Home, Auth, Result } from 'pages';
 import HeaderContainer from 'containers/Base/HeaderContainer';
+import NavigationContainer from 'containers/Base/NavigationContainer';
 import storage from 'lib/storage';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -31,6 +32,7 @@ function App() {
   return (
     <div>
       <HeaderContainer/>
+      <NavigationContainer/>
       <Route exact path="/" component={Home} />
       <Route path="/result" component={Result} />
       <Route path="/auth" component={Auth} />

@@ -10,14 +10,16 @@ const Positioner = styled.div`
   flex-direction: column;
   // position: fixed;
   position: relative;
+  position: sticky;
   top: 0px;
   width: 100%;
+  z-index: 1;
   ${shadow(1)}
 `;
 
 // 흰 배경, 내용 중간 정렬
 const WhiteBackground = styled.div`
-  background: white;
+  background: ${oc.blue[3]};
   display: flex;
   justify-content: center;
   height: auto;
@@ -27,7 +29,6 @@ const WhiteBackground = styled.div`
 const HeaderContents = styled.div`
   width: 1200px;
   height: 55px;
-  margin: 15px 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -47,9 +48,17 @@ const HeaderContents = styled.div`
 const Logo = styled(Link)`
   font-size: 1.4rem;
   letter-spacing: 2px;
-  color: ${oc.blue[6]};
+  color: white;
   font-family: 'Rajdhani';
   text-decoration: none;
+  height: 100%;
+  padding: 10px 20px;
+
+  &:hover {
+    background: ${oc.blue[7]};
+    color: white;
+    ${shadow(1)}
+  }
 `;
 
 // 중간 여백
@@ -57,25 +66,24 @@ const Spacer = styled.div`
   flex-grow: 1;
 `;
 
-// 하단 그래디언트 테두리
-const GradientBorder = styled.div`
-  height: 3px;
-  background: linear-gradient(to right, ${oc.blue[3]}, ${oc.pink[2]});
-`;
 
-const Header = ({children}) => {
+const NavigationBar = ({ onClickList }) => {
   return (
     <Positioner>
       <WhiteBackground>
         <HeaderContents>
-          <Logo to="/">AimBooks</Logo>
           <Spacer/>
-          {children}
+          <Logo to="/">Home</Logo>
+          <Logo to="/result/StockList" onClick={onClickList}>Stock LIst</Logo>
+          <Logo to="/">Sales</Logo>
+          <Logo to="/">Stock In</Logo>
+          <Logo to="/">Stock Out</Logo>
+          <Logo to="/result/kakao">Catalog</Logo>
+          <Spacer/>
         </HeaderContents>
       </WhiteBackground>
-      <GradientBorder/>
     </Positioner>
   );
 };
 
-export default Header;
+export default NavigationBar;

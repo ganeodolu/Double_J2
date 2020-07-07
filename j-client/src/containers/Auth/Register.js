@@ -114,9 +114,7 @@ function Register({ history }) {
     };
 
     try {
-      await AuthActions.localRegister({
-        email, username, password
-      });
+      await AuthActions.localRegister({ email, username, password });
       const loggedInfo = result.toJS();
       console.log(loggedInfo);
       storage.set('loggedInfo', loggedInfo);
