@@ -26,9 +26,9 @@ function CounterStock({ id, stock }) {
   const handleUpdateStock = async () => {
     console.log('asdasd')
     stock += number;
-    console.log('발주: ', { id, stock })
+    console.log('발주: ', { id, stock, number })
     try {
-      await BooksActions.updateStock({ id, stock });
+      await BooksActions.updateStock({ id, stock, quantity: number });
       await BooksActions.getBooksList();
       setNumber(0);
     } catch (e) {

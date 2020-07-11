@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const OrderList = new Schema({
-  datetime: Date,
-  Quantity: Number
+  date: { type: Date, default: Date.now },
+  quantity: Number
 })
 
 const SaleList = new Schema({
-  datetime: Date,
-  Quantity: Number
+  date: { type: Date, default: Date.now },
+  quantity: Number
 })
 
 const Book = new Schema({

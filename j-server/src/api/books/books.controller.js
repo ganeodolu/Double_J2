@@ -1,4 +1,5 @@
 const Book = require('models/book');
+const OrderList = require('models/book');
 
 exports.list = async (ctx) => {
   let books;
@@ -97,12 +98,15 @@ exports.replace = async (ctx) => {
 }
 
 exports.update = async (ctx) => {
-  const { id, stock } = ctx.request.body
+  const { id, stock, quantity } = ctx.request.body
 
   let book;
 
   try {
-    book = await Book.findByIdAndUpdate(id, { stock }, {
+    book = await Book.findByIdAndUpdate(id, { 
+      stock,
+      $push: { order_list: { quantity } }
+    }, {
       new: true
     });
   } catch(e) {

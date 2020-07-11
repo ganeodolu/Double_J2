@@ -76,9 +76,9 @@ const CounterInput = styled.input`
 
 const StockCounterButton = ({ onIncrease, onDecrease, number, onChange }) => (
   <Wrapper>
-    <CounterButton onClick={onIncrease}>+</CounterButton>
-    <CounterInput value={number} onChange={onChange}/>
     <CounterButton onClick={onDecrease}>-</CounterButton>
+    <CounterInput value={number} onChange={onChange}/>
+    <CounterButton onClick={onIncrease}>+</CounterButton>
   </Wrapper>
 );
 
