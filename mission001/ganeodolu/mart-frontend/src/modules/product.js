@@ -31,10 +31,14 @@ const initialState = {
 
 const product = handleActions(
   {
-    [READ_PRODUCT_SUCCESS]: (state, { payload: product }) => ({
-      ...state,
-      product,
-    }),
+    [READ_PRODUCT_SUCCESS]: (state, { payload: product }) => {
+      console.log("READ_PRODUCT: ", product)
+      return (
+      {
+        ...state,
+        product
+      })
+    },
     [READ_PRODUCT_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,

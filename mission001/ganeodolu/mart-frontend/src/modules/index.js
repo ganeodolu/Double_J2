@@ -6,6 +6,7 @@ import write, { writeSaga } from './write';
 import product, { productSaga } from './product';
 import auth, { authSaga } from './auth';
 import user, { userSaga } from './user';
+import search, { searchSaga } from './search';
 
 const rootReducer = combineReducers({
   user,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   products,
   write,
   product,
+  search,
 });
 
 export function* rootSaga() {
@@ -23,6 +25,7 @@ export function* rootSaga() {
     productsSaga(),
     writeSaga(),
     productSaga(),
+    searchSaga(),
   ]);
 }
 

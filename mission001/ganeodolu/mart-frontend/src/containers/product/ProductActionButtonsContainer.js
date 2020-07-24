@@ -14,7 +14,7 @@ const ProductActionButtonsContainer = ({ history, _id }) => {
 
   const onEdit = () => {
     dispatch(setOriginalProduct(product))
-    history.push('/create');
+    history.push('/products/create');
   };
 
   const onRemove = async () => {

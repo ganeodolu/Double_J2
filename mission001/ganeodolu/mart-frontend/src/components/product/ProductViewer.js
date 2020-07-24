@@ -1,7 +1,9 @@
 import React from 'react'
 import ProductActionButtonsContainer from '../../containers/product/ProductActionButtonsContainer'
+import { useSelector } from 'react-redux'
 
-const ProductViewer = ({product, error, loading }) => {
+const ProductViewer = ({product, error, loading}) => {
+  console.log("Viewer Create: ", product, error)
   if(error) {
     if(error.response && error.response.status === 404) {
       return (
@@ -9,7 +11,7 @@ const ProductViewer = ({product, error, loading }) => {
       )
     }
     return (
-      <div>에러 발생</div>
+      <div>에러 발생2</div>
     )
   }
   

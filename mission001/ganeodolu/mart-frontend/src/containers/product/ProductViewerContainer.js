@@ -15,12 +15,13 @@ const ProductViewerContainer = ({ match, history }) => {
     error: product.error,
     loading: loading['product/READ_PRODUCT'],
   }));
-
+  console.log('Viewer Container: ', product, error)
   useEffect(() => {
+    console.log('view container param id: ', _id)
     dispatch(readProduct(_id));
-    return () => {
-      dispatch(unloadProduct());
-    };
+    // return () => {
+    //   dispatch(unloadProduct());
+    // };
   }, [dispatch, _id]);
 
   // const onEdit = () => {

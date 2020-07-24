@@ -13,13 +13,13 @@ product.get('/', productsCtrl.read);
 product.delete(
   '/',
   checkLoggedIn,
-  productsCtrl.checkOwnProduct,
+  // productsCtrl.checkOwnProduct,
   productsCtrl.remove,
 );
 product.patch(
   '/',
   checkLoggedIn,
-  productsCtrl.checkOwnProduct,
+  // productsCtrl.checkOwnProduct,
   productsCtrl.update,
 );
 
