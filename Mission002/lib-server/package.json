@@ -6,6 +6,17 @@
   "author": "Aimhee",
   "license": "MIT",
   "dependencies": {
-    "koa": "^2.13.0"
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "joi": "^17.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^9.1.0",
+    "mongoose": "^5.9.26"
+  },
+  "scripts": {
+    "start": "cross-env NODE_PATH=src node src",
+    "start:dev": "cross-env NODE_PATH=src nodemon --watch src/ src/index.js"
   }
 }
