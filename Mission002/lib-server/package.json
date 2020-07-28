@@ -1,0 +1,11 @@
+{
+  "name": "lib-server",
+  "version": "1.0.0",
+  "description": "server",
+  "main": "index.js",
+  "author": "Aimhee",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.13.0"
+  }
+}
