@@ -8,7 +8,7 @@ function generateToken(payload) {
         payload,
         jwtSecret,
         {
-          expiresIn: '7d'
+          expiresIn: '7d' // 7일 동안 유효
         }, (error, token) => {
           if(error) reject(error);
           resolve(token);
