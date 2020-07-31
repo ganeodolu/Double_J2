@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { InfoWrapper, BookWrapper, ResultContents, AddButton } from 'components/Result';
+import { InfoWrapper, BookWrapper, ResultContents, AddButton, ReadBookButton, BookMarkButton, CollectionBookButton } from 'components/Result';
 import * as booksActions from 'redux/modules/books';
 
 
@@ -16,10 +16,11 @@ function Kakao() {
   const dispatch = useDispatch();
   const BooksActions = bindActionCreators(booksActions, dispatch);
 
-  const handleAddDB = async (book) => {
-    console.log(book)
+  const handleAddDB = async (book, str) => {
+    book.type = str;
     try {
       if(user.get('logged')){
+        console.log(book)
         await BooksActions.addBook(book)
         alert('성공하였습니다.')
       } else {
@@ -39,7 +40,9 @@ function Kakao() {
             key={idx} 
             book={book}
           >
-            <AddButton onClick={() => handleAddDB(book)}>DB에 담기</AddButton>
+            <ReadBookButton onClick={() => handleAddDB(book, "Read")}/>
+            <BookMarkButton onClick={() => handleAddDB(book, "Bookmark")}/>
+            <CollectionBookButton onClick={() => handleAddDB(book, "Collection")}/>
           </BookWrapper>
         ))}
       </ResultContents>

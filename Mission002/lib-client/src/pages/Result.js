@@ -6,8 +6,8 @@ import { Kakao, Stock } from 'containers/Result';
 function Result() {
   return (
     <ResultWrapper>
-      <Route path="/result/kakao" component={Kakao} />
-      <Route path="/result/StockList" component={Stock} />
+      <Route exact path="/result/kakao" component={Kakao} />
+      <Route path="/result/" component={Stock} />
     </ResultWrapper>
   );
 };

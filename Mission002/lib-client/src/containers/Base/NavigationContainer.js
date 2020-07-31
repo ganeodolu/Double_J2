@@ -22,8 +22,17 @@ function NavigationContainer() {
     }
   }
 
+  const handleTypeList = async () => {
+    try {
+      await BooksActions.getTypeBooksList();
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+
   return (
-    <NavigationBar onClickList={handleStockList}/>
+    <NavigationBar onClickList={handleStockList} onClickTypeList={handleTypeList}/>
   );
 }
 

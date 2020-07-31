@@ -73,12 +73,11 @@ const NavigationBar = ({ onClickList }) => {
       <WhiteBackground>
         <HeaderContents>
           <Spacer/>
-          <Logo to="/">Home</Logo>
-          <Logo to="/result/StockList" onClick={onClickList}>Stock LIst</Logo>
-          <Logo to="/">Sales</Logo>
-          <Logo to="/">Stock In</Logo>
-          <Logo to="/">Stock Out</Logo>
-          <Logo to="/result/kakao">Catalog</Logo>
+          <Logo to="/result/StockList" onClick={onClickList}>전  체</Logo>
+          <Logo to="/result/Collection">소장책</Logo>
+          <Logo to="/result/Read">읽은책</Logo>
+          <Logo to="/result/Bookmark">관심책</Logo>
+          <Logo to="/result/kakao">검  색</Logo>
           <Spacer/>
         </HeaderContents>
       </WhiteBackground>

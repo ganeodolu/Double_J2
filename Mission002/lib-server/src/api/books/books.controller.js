@@ -15,6 +15,22 @@ exports.list = async (ctx) => {
   ctx.body = books;
 };
 
+exports.typeList = async (ctx) => {
+  const { type } = ctx.params;
+
+  let books;
+
+  try {
+    books = await Book.find({ type })
+      .sort({_id: -1})
+      .exec();
+  } catch(e) {
+    return ctx.throw(500, e);
+  };
+
+  ctx.body = books;
+};
+
 exports.get = async (ctx) => {
   const { id } = ctx.params;
 
@@ -40,8 +56,8 @@ exports.get = async (ctx) => {
 }
 
 exports.create = async (ctx) => {
-  const { authors, contents, datetime, isbn, price, publisher, sale_price, status, thumbnail, title, translators, url, order_list, stock } = ctx.request.body;
-  const book = new Book({ authors, contents, datetime, isbn, price, publisher, sale_price, status, thumbnail, title, translators, url, order_list, stock });
+  const { authors, contents, datetime, isbn, price, publisher, sale_price, status, thumbnail, title, translators, url, type, grade } = ctx.request.body;
+  const book = new Book({ authors, contents, datetime, isbn, price, publisher, sale_price, status, thumbnail, title, translators, url, type, grade });
 
   let existing = null;
   try {

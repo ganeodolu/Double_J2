@@ -37,7 +37,7 @@ const Button = styled.div`
 `;
 
 const AddButton = ({ onClick, children }) => (
-    <Button onClick={onClick}>{children}</Button>
+  <Button onClick={onClick}>{children}</Button>
 );
 
 export default AddButton;
