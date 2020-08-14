@@ -32,23 +32,25 @@ function Login({ history, location }) {
     return false;
   }
 
+  const handleLocalLogin = async (values) => {
+    try {
+      await AuthActions.localLogin(values);
+      const loggedInfo = result;
+
+      UserActions.setLoggedInfo(loggedInfo);
+      history.push('/');
+      storage.set('loggedInfo', loggedInfo);
+    } catch (e) {
+      setError('잘못된 계정정보입니다.');
+    }
+  }
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: ''
     },
-    onSubmit: async (values) => {
-      try {
-        await AuthActions.localLogin(values);
-        const loggedInfo = result;
-  
-        UserActions.setLoggedInfo(loggedInfo);
-        history.push('/');
-        storage.set('loggedInfo', loggedInfo);
-      } catch (e) {
-        setError('잘못된 계정정보입니다.');
-      }
-    }
+    onSubmit: values => handleLocalLogin(values)
   })
 
   return (

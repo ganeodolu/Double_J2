@@ -39,8 +39,8 @@ const initialState = {
 };
 
 export function* userSaga() {
-  yield takeEvery('LOGOUT', logoutSaga);
-  yield takeEvery('CHECK_STATUS', checkStatusSaga);
+  yield takeEvery(LOGOUT, logoutSaga);
+  yield takeEvery(CHECK_STATUS, checkStatusSaga);
 }
 
 export default handleActions({
