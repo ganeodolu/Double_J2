@@ -16,7 +16,7 @@ exports.list = async (ctx) => {
 };
 
 exports.typeList = async (ctx) => {
-  const { type } = ctx.params;
+  const type = ctx.request.body;
 
   let books;
 

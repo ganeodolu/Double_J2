@@ -68,7 +68,7 @@ const Spacer = styled.div`
 `;
 
 function BookWrapper({ book, children }) {
-  const { thumbnail, title, authors, publisher, datetime, url, sale_price, type } = book;
+  const { thumbnail, title, authors, publisher, datetime, url, sale_price, type, isbn } = book;
   return (
     <Positioner>
       <Thumbnail src={thumbnail}/>
@@ -79,6 +79,7 @@ function BookWrapper({ book, children }) {
         <p>{datetime.substr(0, 4)}년 {datetime.substr(5, 2)}월</p>
         <p>판매가: {sale_price.toLocaleString()}</p>
         <p>타입: {type}</p>
+        <p>ISBN: {isbn}</p>
       </InfoContainer>
       <Spacer />
       <InfoContainer>

@@ -67,14 +67,14 @@ const Spacer = styled.div`
 `;
 
 
-const NavigationBar = ({ onClickList }) => {
+const NavigationBar = ({ onClickList, onClickTypeList }) => {
   return (
     <Positioner>
       <WhiteBackground>
         <HeaderContents>
           <Spacer/>
           <Logo to="/result/StockList" onClick={onClickList}>전  체</Logo>
-          <Logo to="/result/Collection">소장책</Logo>
+          <Logo to="/result/Collection" onClick={onClickTypeList("Collection")}>소장책</Logo>
           <Logo to="/result/Read">읽은책</Logo>
           <Logo to="/result/Bookmark">관심책</Logo>
           <Logo to="/result/kakao">검  색</Logo>
