@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import oc from 'open-color';
 import { shadow } from 'lib/styleUtils';
 
-const Wrapper = styled.button.attrs({ type: 'submit' })`
+// const Wrapper = styled.button.attrs({ type: 'submit' })`
+const Wrapper = styled.div`
   margin-top: 1rem;
   padding-top: 0.6rem;
   padding-bottom: 0.5rem;
@@ -31,8 +32,8 @@ const Wrapper = styled.button.attrs({ type: 'submit' })`
   }
 `;
 
-const AuthButton = ({ children }) => (
-  <Wrapper>
+const AuthButton = ({ children, onClick }) => (
+  <Wrapper onClick={onClick}>
     {children}
   </Wrapper>
 );
