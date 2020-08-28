@@ -15,8 +15,9 @@ const Positioner = styled.div`
 const Thumbnail = styled.img`
   // margin: 15px;
   // border: 1px solid ${oc.gray[4]};
-  // width: 150px;
-  width: 100%;
+  width: 178px;
+  height: 258.1px;
+  // width: 100%;
 `;
 
 const InfoContainer = styled.div`

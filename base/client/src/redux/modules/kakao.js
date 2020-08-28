@@ -51,8 +51,8 @@ export default handleActions({
       meta: { is_end, pageable_count, total_count },
       documents
     } = action.payload.data;
-    // const books = documents;
-    const books = (documents && documents.length) && documents.filter(({ thumbnail }) => !!thumbnail)
+    const books = documents;
+    // const books = (documents && documents.length) && documents.filter(({ thumbnail }) => !!thumbnail)
     console.log('SEARCHED BOOKS', books)
     return produce(state, draft => {
       draft.isEnd = is_end;

@@ -5,16 +5,14 @@ import { bindActionCreators } from 'redux';
 import * as kakaoActions from 'redux/modules/kakao';
 
 function KakaoResult() {
-  const { text, size, endPage, pageableCount, totalCount, data } = useSelector(state => ({
+  const { text, endPage, pageableCount, totalCount, data } = useSelector(state => ({
     text: state.kakao.text,
-    size: state.kakao.size,
     endPage: state.kakao.endPage,
     pageableCount: state.kakao.pageableCount,
     totalCount: state.kakao.totalCount,
     data: state.kakao.data
   }));
   const sizes = [10, 20, 40];
-  console.log("endPage", endPage)
   const dispatch = useDispatch();
   const KakaoActions = bindActionCreators(kakaoActions, dispatch);
 
@@ -23,7 +21,7 @@ function KakaoResult() {
     if(text){
       try {
         await KakaoActions.changeSize({ form: 'size', value })
-        await KakaoActions.searchKakaoBooks({text, page: 1, size});
+        await KakaoActions.searchKakaoBooks({text, page: 1, size: value});
       } catch (e) {
         console.log(e)
       }
