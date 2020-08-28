@@ -9,23 +9,26 @@ const api = require('./api');
 
 const mongoose = require('mongoose');
 const bodyParser = require('koa-bodyparser');
+const { jwtMiddleware } = require('lib/token');
 
 const { PORT, MONGO_URI } = process.env
 
 mongoose.Promise = global.Promise; // Node 의 네이티브 Promise 사용
 // mongodb 연결
-mongoose.connect(MONGO_URI).then(
-    (response) => {
+mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useFindAndModify: false
+    }).then(() => {
         console.log('Successfully connected to mongodb');
     }
-).catch(e => {
-    console.error(e);
+    ).catch(e => {
+        console.error(e);
 });
 
 const port = PORT || 4000; // PORT 값이 설정되어있지 않다면 4000 을 사용합니다.
 
 app.use(bodyParser()); // 바디파서 적용, 라우터 적용코드보다 상단에 있어야합니다.
-
+app.use(jwtMiddleware)
 router.use('/api', api.routes()); // api 라우트를 /api 경로 하위 라우트로 설정
 app.use(router.routes()).use(router.allowedMethods());
 

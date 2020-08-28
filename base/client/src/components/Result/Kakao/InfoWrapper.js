@@ -40,12 +40,12 @@ const Spacer = styled.div`
   flex-grow: 1;
 `;
 
-const InfoWrapper = ({ text, totalCount, children, onChange }) => {
+const InfoWrapper = ({ text, pageableCount, children, onChange }) => {
   return (
     <>
       <InfoContainer>
         <InfoText>{text}</InfoText>
-        <InfoCount> 검색 결과 {totalCount ? totalCount : 0}건</InfoCount>
+        <InfoCount> 검색 결과 {pageableCount ? pageableCount : 0}건</InfoCount>
         <Spacer/>
         <SizeSelect onChange={onChange}>
           {children}

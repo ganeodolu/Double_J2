@@ -17,6 +17,7 @@ function generateToken(payload) {
     }
   );
 };
+exports.generateToken = generateToken;
 
 function decodeToken(token) {
   return new Promise(
@@ -33,7 +34,6 @@ function decodeToken(token) {
   );
 }
 
-exports.generateToken = generateToken;
 exports.jwtMiddleware = async (ctx, next) => {
   const token = ctx.cookies.get('access_token');
   if(!token) return next();

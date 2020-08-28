@@ -39,6 +39,7 @@ exports.localRegister = async (ctx) => {
 
   let token = null;
   try {
+    console.log('account: ', account)
     token = await account.generateToken();
   } catch(e) {
     ctx.throw(500, e);
@@ -110,11 +111,11 @@ exports.logout = async (ctx) => {
 
 exports.check = (ctx) => {
   const { user } = ctx.request;
+  console.log(ctx.request.user)
 
   if(!user) {
      ctx.status = 403;
      return;
   }
-
   ctx.body = user.profile;
 }

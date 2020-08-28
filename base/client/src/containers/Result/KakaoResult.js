@@ -30,7 +30,7 @@ function KakaoResult() {
 
   return (
     <>
-      <InfoWrapper text={text} totalCount={totalCount} onChange={onChangeSize}>
+      <InfoWrapper text={text} pageableCount={pageableCount} onChange={onChangeSize}>
         {
           sizes.map((size, idx) => (
             <option key={idx} value={size}>{size}개</option>
