@@ -28,17 +28,6 @@ function Login({ history, location }) {
     });
   }
 
-  useEffect(() => {
-    const query = queryString.parse(location.search);
-    if(query.expired !== undefined) {
-      setError('세션에 만료되었습니다. 다시 로그인 하세요.')
-    }
-    return () => {
-      AuthActions.initializeForm('login')
-      UserActions.setLoggedInfo(result);
-    }
-  }, [])
-
   const setError = (message) => {
     AuthActions.setError({
       form: 'login',
@@ -50,30 +39,29 @@ function Login({ history, location }) {
   const handleLocalLogin = async () => {
     try {
       await AuthActions.localLogin({email, password});
-      history.push('/');
     } catch (e) {
       setError('잘못된 계정정보입니다.');
     }
   }
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     email: '',
-  //     password: ''
-  //   },
-  //   onSubmit: async (values) => {
-  //     try {
-  //       await AuthActions.localLogin(values);
-  //       const loggedInfo = result;
-  
-  //       UserActions.setLoggedInfo(loggedInfo);
-  //       history.push('/');
-  //       storage.set('loggedInfo', loggedInfo);
-  //     } catch (e) {
-  //       setError('잘못된 계정정보입니다.');
-  //     }
-  //   }
-  // })
+  useEffect(() => {
+    const query = queryString.parse(location.search);
+    if(query.expired !== undefined) {
+      setError('세션에 만료되었습니다. 다시 로그인 하세요.')
+    }
+    return () => {
+      AuthActions.initializeForm('login');
+    }
+  }, [])
+
+  useEffect(() => {
+    if(Object.keys(result).length !== 0){
+      UserActions.setLoggedInfo(result);
+      storage.set('loggedInfo', result);
+      UserActions.setValidated(true);
+      history.push('/');
+    }
+  }, [history, result])
 
   return (
     <AuthContent title="로그인">

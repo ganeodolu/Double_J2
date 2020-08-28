@@ -12,8 +12,10 @@ const client = axios.create({
   timeout: 10000
 });
 
-export const searchKakaoBooks = (text) => client.get('/v3/search/book', { 
+export const searchKakaoBooks = ({text, page, size}) => client.get('/v3/search/book', { 
   params: {
     query: text,
+    page,
+    size
   }
 })

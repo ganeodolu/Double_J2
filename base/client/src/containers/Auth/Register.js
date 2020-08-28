@@ -67,11 +67,6 @@ function Register({ history }) {
   const checkEmailExists = debounce(async (email) => {
     try {
       await AuthActions.checkEmailExists(email);
-      // if(exists.email) {
-      //   setError('이미 존재하는 이메일입니다.');
-      // } else {
-      //   setError(null);
-      // }
     } catch(e) {
       console.log(e)
     }
@@ -80,11 +75,6 @@ function Register({ history }) {
   const checkUsernameExists = debounce(async (username) => {
     try {
       await AuthActions.checkUsernameExists(username);
-      // if(exists.username) {
-      //   setError('이미 존재하는 아이디입니다.');
-      // } else {
-      //   setError(null);
-      // }
     } catch(e) {
       console.log(e);
     }
@@ -119,7 +109,7 @@ function Register({ history }) {
     try {
       await AuthActions.localRegister({ email, username, password });
       // UserActions.setValidated(true);
-      history.push('/');
+      // history.push('/');
     } catch(e) {
       if(e.response.status === 409) {
         const { key } = e.response.data;
@@ -144,37 +134,14 @@ function Register({ history }) {
     }
   }, [exists])
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     email: '',
-  //     username: '',
-  //     password: '',
-  //     passwordConfirm: ''
-  //   },
-  //   validate,
-  //   onSubmit: async (values) => {
-  //     const { email, username, password, passwordConfirm } = values;
-  //     if(error) return;
-  //     if(exists.email || exists.username) return;
-
-  //     try {
-  //       await AuthActions.localRegister({ email, username, password });
-  //       const loggedInfo = result;
-  //       console.log(loggedInfo);
-  //       storage.set('loggedInfo', loggedInfo);
-  //       UserActions.setLoggedInfo(loggedInfo);
-  //       UserActions.setValidated(true);
-  //       history.push('/');
-  //     } catch(e) {
-  //       if(e.response.status === 409) {
-  //         const { key } = e.response.data;
-  //         const message = key === 'email' ? '이미 존재하는 이메일입니다.' : '이미 존재하는 아이디입니다.';
-  //         return setError(message);
-  //       }
-  //       setError('알 수 없는 에러가 발생했습니다.')
-  //     }
-  //   }
-  // })
+  useEffect(() => {
+    if(Object.keys(result).length !== 0){
+      UserActions.setLoggedInfo(result);
+      storage.set('loggedInfo', result);
+      UserActions.setValidated(true);
+      history.push('/');
+    }
+  }, [history, result])
 
   return (
     <AuthContent title="회원가입">

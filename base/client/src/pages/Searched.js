@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { KakaoResult } from 'containers/Result';
 import { BaseWrapper } from 'components/Base';
-import Main from 'containers/Base/Main'
 
-function Home() {
+function Searched() {
   return (
     <BaseWrapper>
-      <Route path="/" component={Main}/>
+      <Route path="/search/kakao" component={KakaoResult} />
     </BaseWrapper>
   );
 }
 
-export default Home;
+export default Searched;

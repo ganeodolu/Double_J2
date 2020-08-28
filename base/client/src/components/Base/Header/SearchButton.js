@@ -35,7 +35,7 @@ const Spacer = styled.div`
 
 const SearchButton = ({ children, onClick }) => (
   <>
-    <BorderedButton to={"/result/kakao"} onClick={onClick}>
+    <BorderedButton to={"/search/kakao"} onClick={onClick}>
       {children}
     </BorderedButton>
     <Spacer/>

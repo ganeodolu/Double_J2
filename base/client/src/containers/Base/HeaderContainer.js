@@ -7,24 +7,16 @@ import * as kakaoActions from 'redux/modules/kakao';
 import storage from 'lib/storage';
 
 function HeaderContainer() {
-  const { visible, user, text, result } = useSelector(state => ({
+  const { visible, user, text, size } = useSelector(state => ({
     visible: state.base.header.visible,
     user: state.user,
     text: state.kakao.text,
-    result: state.auth.result
+    size: state.kakao.size
   }))
 
   const dispatch = useDispatch();
   const UserActions = bindActionCreators(userActions, dispatch);
   const KakaoActions = bindActionCreators(kakaoActions, dispatch);
-  
-  useEffect(() => {
-    if(Object.keys(result).length !== 0){
-      UserActions.setLoggedInfo(result);
-      storage.set('loggedInfo', result);
-      UserActions.setValidated(true);
-    }
-  }, [result])
 
   if(!visible) return null;
 
@@ -47,7 +39,7 @@ function HeaderContainer() {
 
   const handleSearch = async () => {
     try {
-      await KakaoActions.searchKakaoBooks(text);
+      await KakaoActions.searchKakaoBooks({text, page: 1, size});
     } catch (e) {
       console.log(e)
     }
