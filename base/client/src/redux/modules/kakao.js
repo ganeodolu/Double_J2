@@ -6,6 +6,7 @@ import createRequestSaga, { createRequestActionTypes } from 'lib/createRequestSa
 
 const CHANGE_INPUT = 'kakao/CHANGE_INPUT'
 const CHANGE_SIZE = 'kakao/CHANGE_SIZE'
+const CHANGE_PAGE = 'kakao/CHANGE_PAGE'
 const [
   SEARCH_KAKAO_BOOKS,
   SEARCH_KAKAO_BOOKS_SUCCESS,
@@ -14,6 +15,7 @@ const [
 
 export const changeInput = createAction(CHANGE_INPUT);
 export const changeSize = createAction(CHANGE_SIZE);
+export const changePage = createAction(CHANGE_PAGE);
 export const searchKakaoBooks = createAction(SEARCH_KAKAO_BOOKS, ({text, page, size}) => ({text, page, size}));
 
 const searchKakaoBooksSaga = createRequestSaga(SEARCH_KAKAO_BOOKS, KakaoAPI.searchKakaoBooks);
@@ -37,13 +39,21 @@ export default handleActions({
   [CHANGE_INPUT]: (state, action) => {
     const { value } = action.payload;
     return produce(state, draft => {
-      draft.text = value
+      draft.text = value;
+      draft.page = 1;
     });
   },
   [CHANGE_SIZE]: (state, action) => {
     const { form, value } = action.payload;
     return produce(state, draft => {
       draft[form] = value;
+      draft.page = 1;
+    })
+  },
+  [CHANGE_PAGE]: (state, action) => {
+    const {value} = action.payload;
+    return produce(state, draft => {
+      draft.page = value;
     })
   },
   [SEARCH_KAKAO_BOOKS_SUCCESS]: (state, action) => {
