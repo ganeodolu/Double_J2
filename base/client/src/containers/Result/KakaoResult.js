@@ -54,7 +54,7 @@ function KakaoResult() {
       <KakaoContents>
         {
           data && data.map((book, idx) => (
-            <BookWrapper key={idx} book={book}>
+            <BookWrapper key={idx} book={book} idx={idx}>
 
             </BookWrapper>
           ))

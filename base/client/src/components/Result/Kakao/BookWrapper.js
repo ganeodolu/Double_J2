@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import oc from 'open-color';
-import { shadow } from 'lib/styleUtils';
+import oc from "open-color";
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Positioner = styled.div`
   // display: flex;
@@ -32,22 +32,33 @@ const TitleLink = styled.a`
     color: ${oc.red[6]};
     text-decoration: underline;
   }
-`
+`;
 
-function BookWrapper({ book }) {
-  const { thumbnail, title, authors, publisher, datetime, url, sale_price } = book;
+function BookWrapper({ book, idx }) {
+  const {
+    thumbnail,
+    title,
+    authors,
+    publisher,
+    datetime,
+    url,
+    sale_price,
+  } = book;
+  // const bookTo = `/search/kakao/detail/${idx}`;
+  // console.log(bookTo)
   return (
     <Positioner>
-      <Thumbnail src={thumbnail}/>
+      <Thumbnail src={thumbnail} />
       <InfoContainer>
-        <TitleLink href={url} target="_blank">{title}</TitleLink>
+        <Link to={"/search/kakao/detail/" + idx}>{title}</Link>
+        {/* <TitleLink href={url} target="_blank">{title}</TitleLink> */}
         <p>{authors.join(" ")} 지음</p>
         {/* <p>출판사: {publisher}</p>
         <p>{datetime.substr(0, 4)}년 {datetime.substr(5, 2)}월</p>
         <p>판매가: {sale_price.toLocaleString()}</p> */}
       </InfoContainer>
     </Positioner>
-  )
-};
+  );
+}
 
 export default BookWrapper;
